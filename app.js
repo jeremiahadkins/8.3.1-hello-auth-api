@@ -35,4 +35,4 @@ app.get('/animals/:id', animalController.detail);
 app.get('/animals', animalController.list);
 
 
-app.listen(3000);
+app.listen(process.env.PORT || 3000);
