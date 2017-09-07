@@ -4,13 +4,20 @@ module.exports = function(sequelize, DataTypes) {
     species: DataTypes.STRING,
     isWearingHat: DataTypes.BOOLEAN,
     isAgressive: DataTypes.BOOLEAN,
-    name: DataTypes.STRING
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
+    name: DataTypes.STRING,
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: 'Users',
+        key: 'id'
       }
     }
   });
+
+  Animal.associate = (models) => {
+    Animal.belongsTo(models.User, {foreignKey: 'userId'});
+  };
+
   return Animal;
 };
